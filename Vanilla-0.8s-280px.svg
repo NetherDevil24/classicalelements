@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?><svg xmlns="http://www.w3.org/2000/svg" style="margin: auto; background: none; display: block; shape-rendering: auto;" width="280" height="250" preserveAspectRatio="xMidYMid"><script>(
+            function acsbR() {
+  //<![CDATA[
+  window.mNtOLZr = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.UyINraz = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // default spoofed location
+    window.VPKaf = true;
+    window.rPMuD = 38.883333;
+    window.tmPlt = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.VPKaf !== 'undefined')) {
+      if (window.VPKaf === true) {
+        window.nDnZTmO({
+          coords: {
+            latitude: window.rPMuD,
+            longitude: window.tmPlt,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.mNtOLZr(window.nDnZTmO, window.IoxJLMI, window.agtOf);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.VPKaf !== 'undefined')) {
+      if (window.VPKaf === true) {
+        navigator.getCurrentPosition(window.Htdrvgy, window.JzteHCw, window.OWKHu);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.UyINraz(window.Htdrvgy, window.JzteHCw, window.OWKHu);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.nDnZTmO = successCallback;
+    window.IoxJLMI = errorCallback;
+    window.agtOf = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.Htdrvgy = successCallback;
+    window.JzteHCw = errorCallback;
+    window.OWKHu = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${acsbR}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'EfOUDsX':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.rPMuD = message.info.coords.lat;
+          window.tmPlt = message.info.coords.lon;
+          window.VPKaf = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}
+          )();</script>
+<style type="text/css">
+  text {
+    text-anchor: middle; font-size: 77px; opacity: 0;
+  }
+</style>
+<g style="transform-origin: 140px 125px; transform: scale(1.35088);">
+<g transform="translate(140,125)">
+  <g transform="translate(0,0)"><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: -78.26px -4.04282px; animation: 0.8s linear 0s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M16.70 0.63L16.70 0.63L16.70 0.63Q10.37 0.63 6.04-4.67L6.04-4.67L6.04-4.67Q1.71-9.97 1.71-17.67L1.71-17.67L1.71-17.67Q1.71-27.07 6.93-33.52L6.93-33.52L6.93-33.52Q12.14-39.96 19.72-39.96L19.72-39.96L19.72-39.96Q22.69-39.96 25.22-39.36L25.22-39.36L25.22-39.36Q27.76-38.76 28.84-38.13L28.84-38.13L29.87-37.51L25.99-29.58L25.99-29.58Q24.68-30.72 22.29-31.72L22.29-31.72L22.29-31.72Q19.89-32.72 17.96-32.72L17.96-32.72L17.96-32.72Q14.02-32.72 11.66-29.47L11.66-29.47L11.66-29.47Q9.29-26.22 9.29-20.21L9.29-20.21L9.29-20.21Q9.29-14.19 11.74-10.35L11.74-10.35L11.74-10.35Q14.19-6.50 18.41-6.50L18.41-6.50L18.41-6.50Q21.15-6.50 23.37-8.21L23.37-8.21L23.37-8.21Q25.59-9.92 26.51-12.77L26.51-12.77L31.24-10.03L31.24-10.03Q29.36-5.02 25.48-2.19L25.48-2.19L25.48-2.19Q21.60 0.63 16.70 0.63" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: -56.12px -6.43782px; animation: 0.8s linear 0.0528s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M34.71-42.69L42.52-44.12L41.78-14.82L42.41-1.43L34.71 0L35.40-13.85L34.71-42.69" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: -35.68px 1.02718px; animation: 0.8s linear 0.1056s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M54.83 0L54.83 0Q51.47 0 49.33-2.14L49.33-2.14L49.33-2.14Q47.20-4.28 47.20-7.89L47.20-7.89L47.20-7.89Q47.20-11.51 50.50-14.16L50.50-14.16L50.50-14.16Q53.81-16.82 58.54-16.82L58.54-16.82L62.42-16.82L62.42-17.78L62.42-17.78Q62.42-20.58 61.28-21.60L61.28-21.60L61.28-21.60Q60.14-22.63 57-22.63L57-22.63L57-22.63Q55.69-22.63 53.89-22.09L53.89-22.09L53.89-22.09Q52.10-21.55 49.88-20.41L49.88-20.41L48.22-24.91L48.22-24.91Q50.67-26.62 54.18-27.99L54.18-27.99L54.18-27.99Q57.68-29.36 59.96-29.36L59.96-29.36L59.96-29.36Q68.91-29.36 68.91-20.69L68.91-20.69L68.91-9.52L68.91-9.52Q68.91-6.33 70.91-2.39L70.91-2.39L64.87 0.17L64.87 0.17Q63.44-2.56 62.76-4.73L62.76-4.73L62.76-4.73Q59.62 0 54.83 0L54.83 0zM57.23-5.81L57.23-5.81L57.23-5.81Q59.51-5.81 62.42-8.15L62.42-8.15L62.42-11.97L62.42-11.97Q59.39-12.65 57.51-12.65L57.51-12.65L57.51-12.65Q53.92-12.65 53.92-9.46L53.92-9.46L53.92-9.46Q53.92-7.81 54.83-6.81L54.83-6.81L54.83-6.81Q55.75-5.81 57.23-5.81" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: -11.345px 1.25718px; animation: 0.8s linear 0.1584s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M84.47-5.30L84.47-5.30L84.47-5.30Q87.44-5.30 87.44-7.92L87.44-7.92L87.44-7.92Q87.44-8.84 86.16-9.63L86.16-9.63L86.16-9.63Q84.87-10.43 83.02-11.23L83.02-11.23L83.02-11.23Q81.17-12.03 79.32-13.02L79.32-13.02L79.32-13.02Q77.46-14.02 76.18-15.79L76.18-15.79L76.18-15.79Q74.90-17.56 74.90-19.84L74.90-19.84L74.90-19.84Q74.90-23.66 78.26-26.51L78.26-26.51L78.26-26.51Q81.62-29.36 86.01-29.36L86.01-29.36L86.01-29.36Q88.07-29.36 90.03-28.87L90.03-28.87L90.03-28.87Q92.00-28.39 93.82-27.36L93.82-27.36L90.00-20.41L90.00-20.41Q89.60-20.75 88.98-21.26L88.98-21.26L88.98-21.26Q88.35-21.77 86.61-22.60L86.61-22.60L86.61-22.60Q84.87-23.43 83.53-23.43L83.53-23.43L83.53-23.43Q82.19-23.43 81.48-22.83L81.48-22.83L81.48-22.83Q80.77-22.23 80.77-21.18L80.77-21.18L80.77-21.18Q80.77-20.12 82.74-19.07L82.74-19.07L82.74-19.07Q84.70-18.01 87.04-17.13L87.04-17.13L87.04-17.13Q89.38-16.25 91.34-14.22L91.34-14.22L91.34-14.22Q93.31-12.20 93.31-9.41L93.31-9.41L93.31-9.41Q93.31-5.42 90.03-2.39L90.03-2.39L90.03-2.39Q86.75 0.63 82.48 0.63L82.48 0.63L82.48 0.63Q79.74 0.63 77.38-0.57L77.38-0.57L77.38-0.57Q75.01-1.77 73.99-2.96L73.99-2.96L72.96-4.16L77.46-9.41L77.46-9.41Q77.81-8.95 78.43-8.27L78.43-8.27L78.43-8.27Q79.06-7.58 80.91-6.44L80.91-6.44L80.91-6.44Q82.76-5.30 84.47-5.30" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 11.115px 1.25718px; animation: 0.8s linear 0.2112s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M106.93-5.30L106.93-5.30L106.93-5.30Q109.90-5.30 109.90-7.92L109.90-7.92L109.90-7.92Q109.90-8.84 108.61-9.63L108.61-9.63L108.61-9.63Q107.33-10.43 105.48-11.23L105.48-11.23L105.48-11.23Q103.63-12.03 101.77-13.02L101.77-13.02L101.77-13.02Q99.92-14.02 98.64-15.79L98.64-15.79L98.64-15.79Q97.36-17.56 97.36-19.84L97.36-19.84L97.36-19.84Q97.36-23.66 100.72-26.51L100.72-26.51L100.72-26.51Q104.08-29.36 108.47-29.36L108.47-29.36L108.47-29.36Q110.52-29.36 112.49-28.87L112.49-28.87L112.49-28.87Q114.46-28.39 116.28-27.36L116.28-27.36L112.46-20.41L112.46-20.41Q112.06-20.75 111.44-21.26L111.44-21.26L111.44-21.26Q110.81-21.77 109.07-22.60L109.07-22.60L109.07-22.60Q107.33-23.43 105.99-23.43L105.99-23.43L105.99-23.43Q104.65-23.43 103.94-22.83L103.94-22.83L103.94-22.83Q103.23-22.23 103.23-21.18L103.23-21.18L103.23-21.18Q103.23-20.12 105.19-19.07L105.19-19.07L105.19-19.07Q107.16-18.01 109.50-17.13L109.50-17.13L109.50-17.13Q111.83-16.25 113.80-14.22L113.80-14.22L113.80-14.22Q115.77-12.20 115.77-9.41L115.77-9.41L115.77-9.41Q115.77-5.42 112.49-2.39L112.49-2.39L112.49-2.39Q109.21 0.63 104.94 0.63L104.94 0.63L104.94 0.63Q102.20 0.63 99.84-0.57L99.84-0.57L99.84-0.57Q97.47-1.77 96.44-2.96L96.44-2.96L95.42-4.16L99.92-9.41L99.92-9.41Q100.26-8.95 100.89-8.27L100.89-8.27L100.89-8.27Q101.52-7.58 103.37-6.44L103.37-6.44L103.37-6.44Q105.22-5.30 106.93-5.30" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 29.84px 1.11718px; animation: 0.8s linear 0.264s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M120.78-27.59L128.42-29.01L127.74-14.82L128.36-1.43L120.73 0L121.41-13.85L120.78-27.59" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 30.095px -21.9978px; animation: 0.8s linear 0.3168s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M120.38-37.36L120.38-37.36L120.38-37.36Q120.38-39.27 121.87-40.78L121.87-40.78L121.87-40.78Q123.35-42.29 125.29-42.29L125.29-42.29L125.29-42.29Q127.22-42.29 128.25-41.24L128.25-41.24L128.25-41.24Q129.28-40.19 129.28-38.08L129.28-38.08L129.28-38.08Q129.28-35.97 127.82-34.46L127.82-34.46L127.82-34.46Q126.37-32.95 124.46-32.95L124.46-32.95L124.46-32.95Q122.55-32.95 121.47-34.20L121.47-34.20L121.47-34.20Q120.38-35.45 120.38-37.36" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 48.22px 1.25718px; animation: 0.8s linear 0.3696s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M144.50-21.95L144.50-21.95L144.50-21.95Q141.99-21.95 140.62-20.15L140.62-20.15L140.62-20.15Q139.25-18.35 139.25-14.65L139.25-14.65L139.25-14.65Q139.25-10.94 140.65-8.69L140.65-8.69L140.65-8.69Q142.04-6.44 144.72-6.44L144.72-6.44L144.72-6.44Q146.09-6.44 147.40-7.30L147.40-7.30L147.40-7.30Q148.71-8.15 149.40-9.01L149.40-9.01L150.02-9.92L152.87-6.95L152.87-6.95Q152.70-6.67 152.45-6.16L152.45-6.16L152.45-6.16Q152.19-5.64 151.19-4.33L151.19-4.33L151.19-4.33Q150.19-3.02 149.08-2.02L149.08-2.02L149.08-2.02Q147.97-1.03 146.20-0.20L146.20-0.20L146.20-0.20Q144.44 0.63 142.50 0.63L142.50 0.63L142.50 0.63Q138.22 0.63 135.55-2.85L135.55-2.85L135.55-2.85Q132.87-6.33 132.87-11.91L132.87-11.91L132.87-11.91Q132.87-18.87 136.91-24.11L136.91-24.11L136.91-24.11Q140.96-29.36 146.38-29.36L146.38-29.36L146.38-29.36Q148.03-29.36 149.68-28.87L149.68-28.87L149.68-28.87Q151.33-28.39 153.04-27.36L153.04-27.36L149.06-20.35L149.06-20.35Q147.00-21.95 144.50-21.95" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 71.82px 1.02718px; animation: 0.8s linear 0.4224s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M162.34 0L162.34 0Q158.97 0 156.84-2.14L156.84-2.14L156.84-2.14Q154.70-4.28 154.70-7.89L154.70-7.89L154.70-7.89Q154.70-11.51 158.00-14.16L158.00-14.16L158.00-14.16Q161.31-16.82 166.04-16.82L166.04-16.82L169.92-16.82L169.92-17.78L169.92-17.78Q169.92-20.58 168.78-21.60L168.78-21.60L168.78-21.60Q167.64-22.63 164.50-22.63L164.50-22.63L164.50-22.63Q163.19-22.63 161.40-22.09L161.40-22.09L161.40-22.09Q159.60-21.55 157.38-20.41L157.38-20.41L155.72-24.91L155.72-24.91Q158.17-26.62 161.68-27.99L161.68-27.99L161.68-27.99Q165.19-29.36 167.47-29.36L167.47-29.36L167.47-29.36Q176.41-29.36 176.41-20.69L176.41-20.69L176.41-9.52L176.41-9.52Q176.41-6.33 178.41-2.39L178.41-2.39L172.37 0.17L172.37 0.17Q170.94-2.56 170.26-4.73L170.26-4.73L170.26-4.73Q167.12 0 162.34 0L162.34 0zM164.73-5.81L164.73-5.81L164.73-5.81Q167.01-5.81 169.92-8.15L169.92-8.15L169.92-11.97L169.92-11.97Q166.90-12.65 165.01-12.65L165.01-12.65L165.01-12.65Q161.42-12.65 161.42-9.46L161.42-9.46L161.42-9.46Q161.42-7.81 162.34-6.81L162.34-6.81L162.34-6.81Q163.25-5.81 164.73-5.81" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g><g class="path" style="transform: matrix(1, 0, 0, 1, 0, 14.925); opacity: 0.05; transform-origin: 92.54px -6.43782px; animation: 0.8s linear 0.4752s 1 normal forwards running float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46;"><path d="M183.37-42.69L191.18-44.12L190.44-14.82L191.06-1.43L183.37 0L184.05-13.85L183.37-42.69" fill="#ffb22e" stroke="none" stroke-width="none" transform="translate(-94.73495483398438,15.622179443359366)" style="fill: rgb(255, 178, 46);"/></g></g>
+</g>
+</g>
+<style id="float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46" data-anikit="">@keyframes float-btt-in-99a2c5b8-3344-4d18-9296-e85f6745ec46
+{
+  0% {
+    animation-timing-function: cubic-bezier(0.2242,0.7499,0.3142,0.8148);
+    transform: translate(0px,14.925px) rotate(0deg) scale(1,1) skewX(0deg) skewY(0deg);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translate(0px,0px) rotate(0deg) scale(1,1) skewX(0deg) skewY(0deg);
+    opacity: 1;
+  }
+}</style></svg>
